@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Counter from './Counter';
+import Counter from './src/Counter';
 import NumberList from './src/NumberListMemo';
 
 import './style.css';
