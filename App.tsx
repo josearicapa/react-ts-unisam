@@ -2,10 +2,34 @@ import * as React from 'react';
 import Counter from './src/Counter';
 import NumberList from './src/NumberListMemo';
 import './style.css';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
+
+const myMixin = () => css`
+color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: 10px 10px;
+`;
 
 const Button = styled.button`
-  background-color: blue;
+  
+  background-color: ${(props) =>
+    props.variant === 'primary' ? 'blue' : 'gray'};
+    ${myMixin()};
+
+  &:hover {
+    background-color: lightblue;
+  }
+
+    &:active{
+      background:darkblue;
+    }
+`;
+
+const Container = styled.div`
+    display: flex;
+    justify-content: center;
+    
 `;
 
 export default function App() {
@@ -29,8 +53,12 @@ export default function App() {
   return (
     <React.Fragment>
       <NumberList numbers={numbers} />
-      <Button onClick={addNumber}>Add number</Button>
-      <button onClick={removeNumber}>Remove number</button>
+      <Container>
+        <Button variant="primary" onClick={addNumber}>
+          Add number
+        </Button>
+        <Button onClick={removeNumber}>Remove number</Button>
+      </Container>
       <Counter />
     </React.Fragment>
   );
